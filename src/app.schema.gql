@@ -1,0 +1,120 @@
+type CustomerGroup {
+  group: String
+  group1: String
+  group2: String
+  group3: String
+  group4: String
+  group5: String
+}
+
+type PaymentMethod {
+  clientId: ID!
+  typeCredit: String
+  creditLimit: Int
+  creditUsed: Int
+  amountAvailable: Int
+}
+
+type Customer {
+  id: ID!
+  address: String
+  alternateFiscalCode: Int
+  alternateIndustryCode: String
+  alternateName: String
+  blocked: Boolean
+  cellPhone: String
+  channel: String
+  country: String
+  customerGroup: CustomerGroup
+  customerSchema: Int
+  distrChan: Int
+  division: Int
+  fiscalCode: Int
+  frequency: Boolean
+  frequencyDays: String
+  idPortfolio: String
+  immediateDelivery: Boolean
+  industryCode: String
+  isEnrollment: Boolean
+  name: String
+  office: String
+  paymentCondition: String
+  paymentMethods: [PaymentMethod]
+  priceGroup: Int
+  priceList: Int
+  routeId: Int
+  salesOrg: String
+  supplyCenter: String
+  updateDate: String
+  vendorGroup: String
+  portfolio(
+    search: String
+    sortBy: SortByFields
+    sortType: String
+    pageSize: Int!
+    currentPage: Int!
+  ): Portfolio
+}
+
+type Tax {
+  percentage: Float
+  taxId: String
+  taxType: String
+}
+
+type Product {
+  id: ID!
+  channel: String
+  country: String
+  createdAt: String
+  customerCode: String
+  route: String
+  sku: String
+  title: String
+  categoryId: String
+  category: String
+  brand: String
+  classification: String
+  unitsPerBox: Int
+  minOrderUnits: Int
+  packageDescription: String
+  packageUnitDescription: String
+  quantityMaxRedeem: Int
+  redeemUnit: String
+  orderReasonRedeem: Int
+  skuRedeem: Boolean
+  price: Int
+  points: Int
+  taxes: [Tax]
+}
+
+type Pagination {
+  CurrentPage: Int
+  PageSize: Int
+  HasNextPage: Boolean
+  HasPreviousPage: Boolean
+  TotalItems: Int
+}
+
+type Portfolio {
+  products: [Product]
+  pagination: Pagination
+}
+
+enum SortByFields {
+  title
+  brand
+  minOrderUnits
+  price
+  points
+  createdAt
+}
+
+enum sortType {
+  asc
+  desc
+}
+
+type Query {
+  customer(id: ID!): Customer
+}

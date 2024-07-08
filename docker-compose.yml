@@ -1,0 +1,52 @@
+version: '3'
+services:
+  mongo-bff:
+    container_name: mongo-db-bff
+    image: mongo:latest
+    ports:
+      - '27017:27017'
+  redis-bff:
+    container_name: redis-db-bff
+    image: redis:latest
+    ports:
+      - '6379:6379'
+  customer-info:
+    container_name: api-rest-bff-customer-general-info
+    image: api-rest-of-client-info-with-nest:latest
+    environment:
+      MONGO_DB_HOST: mongo-bff
+      MONGO_DB_PORT: 27017
+      MONGO_DB_DATABASE: clients-data-general
+      REDIS_HOST: redis-bff
+      PORT: 3001
+    ports:
+      - '3001:3001'
+    depends_on:
+      - mongo-bff
+      - redis-bff
+  customer-portfolio:
+    container_name: api-rest-bff-customer-portfolio
+    image: api-rest-of-portfolios-with-golang:latest
+    environment:
+      MONGO_DB_HOST: mongo-bff
+      MONGO_DB_PORT: 27017
+      MONGO_DB_DATABASE: portfolios
+      REDIS_HOST: redis-bff
+      PORT: 3000
+    ports:
+      - '3000:3000'
+    depends_on:
+      - mongo-bff
+      - redis-bff
+  api-graphql-bff:
+    container_name: api-graphql-bff
+    image: api-graphql-bff-nestjs:latest
+    environment:
+      URL_SERVER_CUSTOMER_DATA: http://api-rest-bff-customer-general-info:3001
+      URL_SERVER_PORTFOLIO_DATA: http://api-rest-bff-customer-portfolio:3000
+      PORT: 3002
+    ports:
+      - '3002:3002'
+    depends_on:
+      - customer-info
+      - customer-portfolio

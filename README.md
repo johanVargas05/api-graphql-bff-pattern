@@ -1,73 +1,123 @@
+Sure, here is the updated documentation with the revised section:
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+# Instructions for Running the GraphQL API Project with NestJS Locally
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Introduction
 
-## Description
+This project is a GraphQL API developed using NestJS, implementing the Backend for Frontend (BFF) pattern. The BFF pattern is used to create a dedicated backend tailored for the needs of a specific frontend application, optimizing the interaction between the client and the server.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Route GraphQL
 
-## Installation
-
-```bash
-$ npm install
+```sh
+http://localhost:3002/graphql
 ```
 
-## Running the app
+## Technologies Used
 
-```bash
-# development
-$ npm run start
+- **NestJS:** A progressive Node.js framework for building efficient and scalable server-side applications.
+- **GraphQL:** A query language for your API, and a runtime for executing those queries by using a type system you define for your data.
 
-# watch mode
-$ npm run start:dev
+## Dependencies
 
-# production mode
-$ npm run start:prod
+To run this project locally, ensure you have the following dependencies installed:
+
+- **Node.js:** Install the latest LTS version from [Node.js official site](https://nodejs.org/).
+- **npm:** Comes with Node.js, used to manage the project's dependencies.
+- **Docker:** Download and install Docker from [Docker official site](https://www.docker.com/products/docker-desktop).
+- **Docker Compose:** Usually comes with Docker installation. Verify by running `docker-compose --version`.
+- **Git:** Download and install Git from [Git official site](https://git-scm.com/).
+
+- [Documentation of this API in Postman](https://www.postman.com/tyrcode/workspace/backend-for-front-end-go-nest-js)
+
+## Scripts
+
+### Running the Project
+
+To run the project, use the following command:
+
+```sh
+npm run start
 ```
 
-## Test
+### Build the Image of our App
 
-```bash
-# unit tests
-$ npm run test
+This command is used to create the Docker image for our app based on the `Dockerfile`:
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+```sh
+docker build -t api-graphql-bff-nestjs .
 ```
 
-## Support
+### Instructions for Testing the Project Locally
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+To test the project locally, follow the steps to set up the complete environment, which includes creating local Docker images for the two REST API services used in this project. You can download the projects from their respective repositories:
 
-## Stay in touch
+### Client Information Service
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- **Repository:** [nest-api-hexagonal-architecture](https://github.com/johanVargas05/nest-api-hexagonal-architecture)
 
-## License
+### Portfolio Information Service
 
-Nest is [MIT licensed](LICENSE).
+- **Repository:** [golang-api-hexagonal-architecture](https://github.com/johanVargas05/golang-api-hexagonal-architecture)
+
+Each repository includes an endpoint `/seed` to load test data and instructions for creating the local Docker image.
+
+#### Steps to Create Local Images:
+
+1. **Clone the Repositories:**
+
+   ```sh
+   git clone https://github.com/johanVargas05/nest-api-hexagonal-architecture
+   git clone https://github.com/johanVargas05/golang-api-hexagonal-architecture
+   ```
+
+2. **Navigate to Each Project Directory and Build the Docker Image:**
+   For the Client Information Service:
+
+   ```sh
+   cd nest-api-hexagonal-architecture
+   docker build -t api-rest-of-client-info-with-nest .
+   ```
+
+   For the Portfolio Information Service:
+
+   ```sh
+   cd golang-api-hexagonal-architecture
+   docker build -t api-rest-of-portfolios-with-golang .
+   ```
+
+3. **Build the Docker Image for the GraphQL BFF Project:**
+   Navigate to the GraphQL BFF project directory and build its Docker image:
+
+   ```sh
+   cd path-to-your-graphql-bff-project
+   docker build -t api-graphql-bff-nestjs .
+   ```
+
+4. **Run the Docker Compose for the GraphQL BFF Project:**
+   Ensure that all images are available locally, then use the following command to start the application along with its dependencies:
+   ```sh
+   docker-compose -p api_graphql_bff up -d
+   ```
+
+## Glossary
+
+**Backend for Frontend (BFF):**
+A design pattern where a backend service is created specifically for a single frontend application. This pattern is useful for optimizing the communication between the frontend and backend, allowing for more efficient data fetching and processing tailored to the frontend's needs.
+
+**GraphQL:**
+A query language for APIs and a runtime for fulfilling those queries with your existing data. GraphQL provides a complete and understandable description of the data in your API, gives clients the power to ask for exactly what they need, and makes it easier to evolve APIs over time.
+
+**NestJS:**
+A framework for building efficient, scalable Node.js server-side applications. It uses progressive JavaScript, is built with and fully supports TypeScript, and combines elements of OOP (Object-Oriented Programming), FP (Functional Programming), and FRP (Functional Reactive Programming).
+
+**Docker:**
+A platform used to develop, ship, and run applications inside containers. Containers allow developers to package an application with all parts it needs, such as libraries and other dependencies, and ship it all out as one package.
+
+**Docker Compose:**
+A tool for defining and running multi-container Docker applications. You can use a `docker-compose.yml` file to configure your application's services and then use a single command to create and start all the services from your configuration.
+
+This documentation provides a comprehensive overview of the GraphQL API project using NestJS, facilitating understanding, setup, and maintenance of the project.
