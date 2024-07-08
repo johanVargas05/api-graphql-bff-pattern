@@ -4,7 +4,7 @@ Sure, here is the updated documentation with the revised section:
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
 
-# Instructions for Running the GraphQL API Project with NestJS Locally
+# GraphQL API with NestJS implementing the BFF (Backend for Frontend) pattern
 
 ## Introduction
 
